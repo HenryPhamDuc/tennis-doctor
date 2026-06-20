@@ -17,9 +17,8 @@ not_found_handling = "single-page-application"  # SPA-style fallback
 # Workers AI binding (free LLM inference + embeddings)
 # =============================================================================
 # No API key needed — auth is via the binding.
-[[ai_bindings]]
-name = "AI"
-binding_type = "ai"
+[ai]
+binding = "AI"
 
 # =============================================================================
 # Vectorize index (free vector DB)
@@ -31,18 +30,12 @@ binding_type = "ai"
 #   npx wrangler vectorize create-metadata-index tennis-doctor-embeddings --property-name section --type string
 #   npx wrangler vectorize create-metadata-index tennis-doctor-embeddings --property-name slug --type string
 #   npx wrangler vectorize create-metadata-index tennis-doctor-embeddings --property-name lang --type string
-[[vectorize_bindings]]
+[[vectorize]]
 binding = "VECTORIZE"
 index_name = "tennis-doctor-embeddings"
-# =============================================================================
-# Custom domain (optional)
-# =============================================================================
-# routes = [
-#   { pattern = "tennis-doctor.example.com/*", custom_domain = true }
-# ]
 
 # =============================================================================
-# Environment variables (NON-secret, public)
+# Environment variables (public)
 # =============================================================================
 [vars]
 SITE_NAME = "Tennis Doctor"
@@ -54,7 +47,8 @@ TOP_K = "8"
 WIKI_URL = "https://henryphamduc.github.io/tennis-wiki/"
 
 # =============================================================================
-# Local dev settings (wrangler dev)
+# Custom domain (uncomment after adding a zone to your CF account)
 # =============================================================================
-[env.dev]
-name = "tennis-doctor-dev"
+# routes = [
+#   { pattern = "tennis-doctor.example.com/*", custom_domain = true }
+# ]
