@@ -1,0 +1,60 @@
+name = "tennis-doctor"
+main = "src/worker.js"
+compatibility_date = "2024-12-01"
+compatibility_flags = ["nodejs_compat"]
+
+# =============================================================================
+# Static assets (the frontend)
+# =============================================================================
+# The docs/ directory holds the MkDocs-built static site + chat UI.
+# Cloudflare Workers Assets serves this for all non-API routes.
+[assets]
+directory = "./docs"
+binding = "ASSETS"
+not_found_handling = "single-page-application"  # SPA-style fallback
+
+# =============================================================================
+# Workers AI binding (free LLM inference + embeddings)
+# =============================================================================
+# No API key needed — auth is via the binding.
+[[ai_bindings]]
+name = "AI"
+binding_type = "ai"
+
+# =============================================================================
+# Vectorize index (free vector DB)
+# =============================================================================
+# IMPORTANT: Use bge-m3 (multilingual, 1024-dim) so Vietnamese + English
+# both work. Created via:
+#   npx wrangler vectorize create tennis-doctor-embeddings --dimensions 1024 --metric cosine
+# Metadata indexes:
+#   npx wrangler vectorize create-metadata-index tennis-doctor-embeddings --property-name section --type string
+#   npx wrangler vectorize create-metadata-index tennis-doctor-embeddings --property-name slug --type string
+#   npx wrangler vectorize create-metadata-index tennis-doctor-embeddings --property-name lang --type string
+[[vectorize_bindings]]
+binding = "VECTORIZE"
+index_name = "tennis-doctor-embeddings"
+# =============================================================================
+# Custom domain (optional)
+# =============================================================================
+# routes = [
+#   { pattern = "tennis-doctor.example.com/*", custom_domain = true }
+# ]
+
+# =============================================================================
+# Environment variables (NON-secret, public)
+# =============================================================================
+[vars]
+SITE_NAME = "Tennis Doctor"
+SITE_LANG = "en"
+DEFAULT_LLM = "@cf/meta/llama-3.1-8b-instruct"
+EMBEDDING_MODEL = "@cf/baai/bge-m3"
+TOP_K = "8"
+# URL of the Vietnamese Tennis-WIKI site (for language toggle)
+WIKI_URL = "https://henryphamduc.github.io/tennis-wiki/"
+
+# =============================================================================
+# Local dev settings (wrangler dev)
+# =============================================================================
+[env.dev]
+name = "tennis-doctor-dev"

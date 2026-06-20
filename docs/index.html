@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎾 Tennis Doctor — AI Tennis Coach</title>
+    <meta name="description" content="AI tennis coach powered by 350+ articles of biomechanics, technique, tactics and pro player analysis. Ask anything about tennis.">
+    <link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
+    <link rel="stylesheet" href="/assets/chat.css">
+    <meta property="og:title" content="Tennis Doctor — AI Tennis Coach">
+    <meta property="og:description" content="Ask anything about tennis. Powered by Henry Pham's research vault (350+ articles).">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tennis-doctor.example.com/">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="td-nav">
+        <a href="/">🎾 Tennis Doctor</a>
+        <div class="td-nav-links">
+            <a href="/chat/">Chat</a>
+            <a href="#capabilities">Capabilities</a>
+            <a href="#sample-qa">Examples</a>
+            <button id="lang-toggle" class="lang-toggle">🌐 EN</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Hero -->
+        <section class="hero">
+            <h1>🎾 Tennis Doctor</h1>
+            <p class="tagline">Ask anything about tennis. Powered by 350+ articles of biomechanics, technique, tactics and pro player analysis.</p>
+            <a href="#chat" class="cta">Start chatting →</a>
+        </section>
+
+        <!-- Capabilities -->
+        <section id="capabilities" class="features">
+            <div class="feature-card">
+                <div class="icon">🎯</div>
+                <h3>Technique Analysis</h3>
+                <p>Forehand, backhand, serve, volley, footwork — get detailed breakdowns with biomechanical reasoning.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🦴</div>
+                <h3>Biomechanics</h3>
+                <p>Kinetic chain, wave theory, tensegrity, proprioception — understand <em>why</em> techniques work.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🏆</div>
+                <h3>Pro Player Insights</h3>
+                <p>Federer, Alcaraz, Sinner, Djokovic, Nadal, Shelton — learn from the world's best.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🧠</div>
+                <h3>Mental Game</h3>
+                <p>Pre-performance routines, breathing, pressure management — train your mind as well as your body.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">💪</div>
+                <h3>Fitness & Injury Prevention</h3>
+                <p>Age-appropriate training, proprioception programs, knee/back safety for 40+ players.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🎯</div>
+                <h3>Tactics & Strategy</h3>
+                <p>70% rule, 3-shot patterns, serve &amp; volley, doubles formations — game plans that work.</p>
+            </div>
+        </section>
+
+        <!-- Sample Q&A -->
+        <section id="sample-qa" class="sample-qa">
+            <h2>Sample Questions</h2>
+            <div class="qa-item">
+                <div class="qa-q">How does Carlos Alcaraz generate so much power on his forehand?</div>
+                <div class="qa-a">Alcaraz's forehand is a masterclass in modern biomechanics. The key is his leg drive — he uses an exaggerated crouch in his unit turn to load his posterior chain, then explodes upward through ground reaction force. Combined with his "loop" forehand trajectory (high takeback, low finish) and a passive wrist (no active flexion), this lets him transfer energy from the ground through his kinetic chain in roughly 0.3 seconds. His forehand averages 78 mph with 2,500+ rpm topspin.</div>
+            </div>
+            <div class="qa-item">
+                <div class="qa-q">What is the kinetic chain and why does it matter?</div>
+                <div class="qa-a">The kinetic chain is the sequential transfer of energy from the ground, through your legs, hips, torso, shoulder, arm, and finally the racket. Each link "adds" rotational and linear velocity. For example, ground reaction force → hip rotation → torso coil → shoulder whip → arm lag → racket head speed. Studies show roughly 50% of racket head speed comes from the legs and core, only 30% from the arm. If you break the chain (e.g. by "arming" the ball), you lose power and increase injury risk.</div>
+            </div>
+            <div class="qa-item">
+                <div class="qa-q">I'm 52 and my knees hurt after playing. What should I do?</div>
+                <div class="qa-a">Three priority adjustments: (1) Stop doing deep squats with heavy load — replace with Bulgarian split squats and box squats to keep knees tracking over toes without compressive load. (2) Strengthen VMO (inner quad) and glute medius to stabilize patellar tracking. (3) On court, use a "tension-not-overload" rule: keep tension in your legs but never lock your knees — think "bridge by straight front leg" rather than "push off bent knee". Also consider switching to a softer court surface and using supportive tennis shoes with lateral stability.</div>
+            </div>
+            <div class="qa-item">
+                <div class="qa-q">Explain the 70% rule</div>
+                <div class="qa-a">The 70% Rule (popularized by Craig O'Shannessy) is the insight that professional tennis players only win ~54% of total points, but win ~70% of points when they are "in control" (defined as hitting a neutral or aggressive shot). The implication: don't try to win every point — focus on getting your opponent "on the run" or "in defense" first. The 70% rule is a tactical framework that emphasizes point construction over winner-hunting.</div>
+            </div>
+        </section>
+
+        <!-- Chat -->
+        <section id="chat">
+            <h2 style="text-align:center;margin-bottom:16px">Try it yourself</h2>
+            <div class="chat-container">
+                <div class="chat-messages">
+                    <div class="welcome-message">
+                        <h2>👋 Hi, I'm Tennis Doctor</h2>
+                        <p>I answer tennis questions using Henry Pham's research vault — 350+ articles on technique, biomechanics, tactics, mental game, fitness, and pro players. Click a suggestion below or type your own question.</p>
+                    </div>
+                </div>
+                <div class="chat-input-area">
+                    <div class="chat-suggestions"></div>
+                    <div class="chat-input-row">
+                        <textarea class="chat-input" placeholder="Ask about tennis technique, tactics, players, biomechanics..." rows="1"></textarea>
+                        <button class="chat-send">Send</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer info -->
+        <section style="margin-top:48px;padding:24px;background:var(--td-bot-bubble);border-radius:8px;font-size:0.9em;color:var(--td-text-muted);">
+            <h3 style="color:var(--td-text);margin-top:0">About Tennis Doctor</h3>
+            <p><strong>Built by:</strong> Henry Phạm (Phạm Đức Hải), Vietnamese tennis coach and biomechanics researcher.</p>
+            <p><strong>Knowledge base:</strong> 350+ articles from his Obsidian vault, covering technique, biomechanics, tactics, mental game, fitness, and pro player analysis. Original content is in Vietnamese; this English version uses LLM-translated excerpts and English-original notes.</p>
+            <p><strong>Tech stack:</strong> Cloudflare Workers + Vectorize + Workers AI (free tier). Embeddings via BGE-small-en-v1.5, generation via Llama 3.1 8B.</p>
+            <p><strong>Open source:</strong> <a href="https://github.com/HenryPhamDuc/tennis-doctor">github.com/HenryPhamDuc/tennis-doctor</a></p>
+            <p><strong>Vietnamese version:</strong> <a href="https://henryphamduc.github.io/tennis-wiki/">Tennis WIKI (Vietnamese)</a></p>
+        </section>
+    </div>
+
+    <footer>
+        <p>🎾 Tennis Doctor &copy; 2026 Henry Phạm — CC BY-SA 4.0</p>
+    </footer>
+
+    <script src="/assets/chat.js"></script>
+</body>
+</html>

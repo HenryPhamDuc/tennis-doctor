@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat — Tennis Doctor</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
+    <link rel="stylesheet" href="/assets/chat.css">
+</head>
+<body>
+    <nav class="td-nav">
+        <a href="/">🎾 Tennis Doctor</a>
+        <div class="td-nav-links">
+            <a href="/">Home</a>
+            <a href="/chat/">Chat</a>
+            <a href="/#capabilities">Capabilities</a>
+            <button id="lang-toggle" class="lang-toggle">🌐 EN</button>
+        </div>
+    </nav>
+
+    <div class="container" style="max-width:900px;padding-top:16px;">
+        <div class="chat-container" style="height:calc(100vh - 130px);">
+            <div class="chat-messages">
+                <div class="welcome-message">
+                    <h2>👋 Hi, I'm Tennis Doctor</h2>
+                    <p>I answer tennis questions using Henry Phạm's research vault — 350+ articles on technique, biomechanics, tactics, mental game, fitness, and pro players.</p>
+                    <p style="font-size:0.9em">Click a suggestion below or type your own question.</p>
+                </div>
+            </div>
+            <div class="chat-input-area">
+                <div class="chat-suggestions"></div>
+                <div class="chat-input-row">
+                    <textarea class="chat-input" placeholder="Ask about tennis technique, tactics, players, biomechanics..." rows="1"></textarea>
+                    <button class="chat-send">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>🎾 Tennis Doctor &copy; 2026 Henry Phạm — CC BY-SA 4.0</p>
+    </footer>
+
+    <script src="/assets/chat.js"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "name": "tennis-doctor",
+  "version": "1.0.0",
+  "description": "AI tennis coach chatbot — Cloudflare Workers + Vectorize + Workers AI",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "npm run build:docs && wrangler deploy",
+    "deploy:setup": "wrangler vectorize create tennis-doctor-embeddings --dimensions 1024 --metric cosine && wrangler vectorize create-metadata-index tennis-doctor-embeddings --property-name section --type string && wrangler vectorize create-metadata-index tennis-doctor-embeddings --property-name slug --type string && wrangler vectorize create-metadata-index tennis-doctor-embeddings --property-name lang --type string",
+    "build:docs": "python scripts/translate_to_english.py && python scripts/generate_embeddings.py",
+    "embed": "python scripts/generate_embeddings.py",
+    "translate": "python scripts/translate_to_english.py",
+    "serve": "wrangler dev --local"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
