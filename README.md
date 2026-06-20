@@ -61,70 +61,54 @@ You ask a tennis question → Tennis Doctor retrieves the most relevant chunks f
 ## 🚀 Deploy to your own Cloudflare account
 
 ### Prerequisites
-- Node.js 18+ installed
+- Python 3.10+ with `pip`
+- Node.js 18+ (`npm`)
 - A Cloudflare account (free, sign up at [dash.cloudflare.com/sign-up](https://dash.cloudflare.com/sign-up))
-- A GitHub account (for hosting the static part + the worker code)
 
-### Step 1 — Clone and install
+### Step 1 — Get Cloudflare credentials
+
+You'll need two values. **The Hermes sandbox redacts long credential strings when written via tools, so save them to plain text files yourself** (e.g. with Notepad, then any path is fine):
+
+1. **Account ID**: Cloudflare dashboard → right sidebar → "Account ID" → copy into `CFAccountID.txt`
+2. **API Token**: Cloudflare → My Profile → API Tokens → "Create Token" → "Edit Cloudflare Workers" template → add permissions for `Workers Scripts: Edit`, `Workers AI: Read`, `Vectorize: Edit`, `Account Settings: Read` → save the token into `CloudflareToken.txt`
+
+Recommended file location (or anywhere you prefer):
+```
+C:\Users\Henry\.hermes\desktop-attachments\CloudflareToken.txt
+C:\Users\Henry\.hermes\desktop-attachments\CFAccountID.txt
+```
+
+### Step 2 — Clone and run the deploy script
 
 ```bash
 git clone https://github.com/HenryPhamDuc/tennis-doctor.git
 cd tennis-doctor
-npm install
+python deploy.py
 ```
 
-### Step 2 — Get Cloudflare credentials
+The script will:
+1. **Find your credential files** (or prompt you for their paths via `CF_TOKEN_FILE` and `CF_ACCOUNT_FILE` env vars)
+2. **Install npm dependencies** (`npm install`)
+3. **Create the Vectorize index** (`tennis-doctor-embeddings`, 1024-dim, cosine)
+4. **Create metadata indexes** for `section`, `slug`, `lang`
+5. **Generate embeddings** for all 1,113 chunks via Cloudflare Workers AI bge-m3 (multilingual, takes ~30s)
+6. **Deploy the Worker + static site** to Cloudflare's global edge
 
-1. Find your **Account ID**: Cloudflare dashboard → right sidebar → "Account ID" → copy
-2. Create an **API Token** with these permissions:
-   - Account → Workers Scripts → Edit
-   - Account → Workers AI → Read
-   - Account → Vectorize → Edit
-   - User → User Details → Read
-3. Save both as env vars:
-   ```bash
-   export CF_ACCOUNT_ID="your-account-id-here"
-   export CF_API_TOKEN="your-api-token-here"
-   ```
+### Step 3 — Done! 🎾
 
-You can also put them in a `.env` file in the `scripts/` directory:
+The script prints the live URL, e.g.:
 ```
-CF_ACCOUNT_ID=your-account-id-here
-CF_API_TOKEN=your-api-token-here
+https://tennis-doctor.YOUR-SUBDOMAIN.workers.dev
 ```
 
-### Step 3 — Authenticate wrangler (for deploy)
-
+Open it, click a sample question, and the chat bot should respond. Test the API:
 ```bash
-npx wrangler login
+curl https://tennis-doctor.YOUR-SUBDOMAIN.workers.dev/api/health
 ```
-This opens a browser to OAuth-authorize wrangler with your Cloudflare account.
 
-### Step 4 — Create the Vectorize index
+### Step 4 — (Optional) Custom domain
 
-```bash
-npm run deploy:setup
-```
-This creates the `tennis-doctor-embeddings` index (1024-dim, cosine metric) with metadata indexes for `section`, `slug`, `lang`.
-
-### Step 5 — Generate embeddings and upload
-
-```bash
-python scripts/translate_to_english.py   # creates docs-source/_manifest.json
-python scripts/generate_embeddings.py    # embeds + uploads to Vectorize
-```
-This takes ~30 seconds (Cloudflare Workers AI is fast).
-
-### Step 6 — Deploy the worker + static site
-
-```bash
-npx wrangler deploy
-```
-This deploys both the Worker (API) and the static assets (chat UI, landing page) to Cloudflare's global edge.
-
-### Step 7 — Custom domain (optional)
-
-In `wrangler.toml`, uncomment the `routes` block and set your domain. Then in Cloudflare DNS, add a CNAME record pointing your subdomain to `tennis-doctor.<account-subdomain>.workers.dev`.
+In `wrangler.toml`, uncomment the `routes` block and set your domain. Then in Cloudflare DNS, add a CNAME record pointing your subdomain to `tennis-doctor.YOUR-SUBDOMAIN.workers.dev`.
 
 ## 🛠️ Local development
 
@@ -140,6 +124,25 @@ npx wrangler dev
 # Without Vectorize, the chat will return a "still loading" message.
 # Once you've run the embedding pipeline in production, /api/chat will work.
 ```
+
+### Test the pipeline locally (no Cloudflare needed)
+
+```bash
+# Uses local Ollama for bge-m3 embeddings + Llama 3.1 generation
+# Verifies that retrieval + LLM chain works end-to-end
+
+python scripts/translate_to_english.py --mode pass --out docs-source
+TEST_CHUNKS=20 python scripts/test_pipeline_local.py
+```
+
+This will:
+- Embed 20 chunks via local Ollama bge-m3
+- Embed 3 test questions
+- Retrieve top-5 chunks per question
+- Generate answers via local Llama 3.1
+- Print the full Q&A with timing
+
+**Note**: For the full 1,113-chunk test, set `TEST_CHUNKS=1113` and expect ~2-3 hours on CPU (Cloudflare's Workers AI does this in ~30s with GPU).
 
 ## 📁 Project structure
 
