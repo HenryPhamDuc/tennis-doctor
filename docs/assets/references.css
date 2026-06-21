@@ -51,27 +51,30 @@
     box-shadow: 0 0 0 1000px #1a2e1a inset !important;
 }
 
-/* Auto dark mode via OS preference */
-@media (prefers-color-scheme: dark) {
-    .refs-search {
-        background: #1a2e1a !important;
-        color: #ffffff !important;
-        caret-color: #ffffff;
-        border-color: #2d4a2d;
-    }
-    .refs-search::placeholder {
-        color: #94a3b8 !important;
-    }
-    .refs-search:focus {
-        border-color: #38a169;
-    }
-    .refs-search:-webkit-autofill,
-    .refs-search:-webkit-autofill:hover,
-    .refs-search:-webkit-autofill:focus {
-        -webkit-text-fill-color: #ffffff !important;
-        -webkit-box-shadow: 0 0 0 1000px #1a2e1a inset !important;
-        box-shadow: 0 0 0 1000px #1a2e1a inset !important;
-    }
+/* Auto dark mode via OS preference — DISABLED on purpose.
+   User wants light mode by default. */
+
+[data-theme="dark"] .refs-search {
+    background: #1a2e1a !important;
+    color: #ffffff !important;
+    caret-color: #ffffff;
+    border-color: #2d4a2d;
+}
+
+[data-theme="dark"] .refs-search::placeholder {
+    color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .refs-search:focus {
+    border-color: #38a169;
+}
+
+[data-theme="dark"] .refs-search:-webkit-autofill,
+[data-theme="dark"] .refs-search:-webkit-autofill:hover,
+[data-theme="dark"] .refs-search:-webkit-autofill:focus {
+    -webkit-text-fill-color: #ffffff !important;
+    -webkit-box-shadow: 0 0 0 1000px #1a2e1a inset !important;
+    box-shadow: 0 0 0 1000px #1a2e1a inset !important;
 }
 
 .refs-filters {
@@ -337,35 +340,25 @@
     font-weight: 700;
 }
 
-/* Dark mode (uses prefers-color-scheme) */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --td-bg: #1a202c;
-        --td-bg-card: #2d3748;
-        --td-text: #f7fafc;
-        --td-text-muted: #cbd5e0;
-        --td-border: #4a5568;
-        --td-input-bg: #2d3748;
-        --td-table-head: #1a202c;
-        --td-row-hover: #2a3343;
-    }
-    .refs-cat-Technique   { background: #22543d; color: #c6f6d5; }
-    .refs-cat-Tactics     { background: #2a4365; color: #bee3f8; }
-    .refs-cat-Mental      { background: #744210; color: #fefcbf; }
-    .refs-cat-Coaching    { background: #44337a; color: #e9d8fd; }
-    .refs-cat-Fitness     { background: #742a2a; color: #fed7d7; }
-    .refs-cat-Beginner    { background: #7b341e; color: #fbd38d; }
-    .refs-cat-Junior      { background: #234e52; color: #b2f5ea; }
-    .refs-cat-History     { background: #44403c; color: #e7e5e4; }
-    .refs-cat-Medicine    { background: #7f1d1d; color: #fecaca; }
-    .refs-cat-Philosophy  { background: #4c1d95; color: #ddd6fe; }
-    .refs-cat-Industry    { background: #4a5568; color: #e2e8f0; }
-    .refs-cat-Science     { background: #0c4a6e; color: #b3e5fc; }
-    .refs-cat-Reference   { background: #4a5568; color: #e2e8f0; }
-    .refs-cat-Memoir      { background: #78350f; color: #fde68a; }
-    .refs-cat-Family      { background: #831843; color: #fbcfe8; }
-    .refs-cat-Analytics   { background: #134e4a; color: #99f6e4; }
-}
+/* Dark mode (uses prefers-color-scheme) — DISABLED on purpose.
+   User wants light mode by default. */
+
+[data-theme="dark"] .refs-cat-Technique   { background: #22543d; color: #c6f6d5; }
+[data-theme="dark"] .refs-cat-Tactics     { background: #2a4365; color: #bee3f8; }
+[data-theme="dark"] .refs-cat-Mental      { background: #744210; color: #fefcbf; }
+[data-theme="dark"] .refs-cat-Coaching    { background: #44337a; color: #e9d8fd; }
+[data-theme="dark"] .refs-cat-Fitness     { background: #742a2a; color: #fed7d7; }
+[data-theme="dark"] .refs-cat-Beginner    { background: #7b341e; color: #fbd38d; }
+[data-theme="dark"] .refs-cat-Junior      { background: #234e52; color: #b2f5ea; }
+[data-theme="dark"] .refs-cat-History     { background: #44403c; color: #e7e5e4; }
+[data-theme="dark"] .refs-cat-Medicine    { background: #7f1d1d; color: #fecaca; }
+[data-theme="dark"] .refs-cat-Philosophy  { background: #4c1d95; color: #ddd6fe; }
+[data-theme="dark"] .refs-cat-Industry    { background: #4a5568; color: #e2e8f0; }
+[data-theme="dark"] .refs-cat-Science     { background: #0c4a6e; color: #b3e5fc; }
+[data-theme="dark"] .refs-cat-Reference   { background: #4a5568; color: #e2e8f0; }
+[data-theme="dark"] .refs-cat-Memoir      { background: #78350f; color: #fde68a; }
+[data-theme="dark"] .refs-cat-Family      { background: #831843; color: #fbcfe8; }
+[data-theme="dark"] .refs-cat-Analytics   { background: #134e4a; color: #99f6e4; }
 
 /* Mobile */
 @media (max-width: 700px) {

@@ -144,44 +144,11 @@
     font-weight: 600;
 }
 
-/* Dark mode */
-@media (prefers-color-scheme: dark) {
-    .biblio-card {
-        background: #1a2e1a;
-        border-color: #2d4a2d;
-    }
-    .biblio-card:hover {
-        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
-    }
-    /* Force white text on all elements in bibliography cards */
-    .biblio-card,
-    .biblio-card h3,
-    .biblio-card li,
-    .biblio-card em,
-    .biblio-card p,
-    .biblio-card a {
-        color: #ffffff !important;
-    }
-    .biblio-card h3 {
-        color: #6ee7b7 !important;  /* Light green for emphasis */
-    }
-    .biblio-card li::before {
-        color: #6ee7b7 !important;
-    }
-    .hero-stat-num {
-        color: #6ee7b7;
-    }
-    .hero-stat-label,
-    .hero-stat-divider {
-        color: #cbd5e0;
-    }
-    .bibliography-intro,
-    .bibliography-intro a {
-        color: #e8f5e9 !important;
-    }
-}
+/* Dark mode (uses prefers-color-scheme) — DISABLED on purpose.
+   User wants light mode by default. The [data-theme="dark"] blocks
+   below still apply if user explicitly sets data-theme="dark". */
 
-/* Same for explicit data-theme="dark" */
+/* Explicit data-theme="dark" support */
 [data-theme="dark"] .biblio-card,
 [data-theme="dark"] .biblio-card h3,
 [data-theme="dark"] .biblio-card li,
@@ -189,6 +156,10 @@
 [data-theme="dark"] .biblio-card p,
 [data-theme="dark"] .biblio-card a {
     color: #ffffff !important;
+}
+[data-theme="dark"] .biblio-card {
+    background: #1a2e1a;
+    border-color: #2d4a2d;
 }
 [data-theme="dark"] .biblio-card h3 {
     color: #6ee7b7 !important;
@@ -198,6 +169,14 @@
 }
 [data-theme="dark"] .hero-stat-num {
     color: #6ee7b7;
+}
+[data-theme="dark"] .hero-stat-label,
+[data-theme="dark"] .hero-stat-divider {
+    color: #cbd5e0;
+}
+[data-theme="dark"] .bibliography-intro,
+[data-theme="dark"] .bibliography-intro a {
+    color: #e8f5e9 !important;
 }
 
 /* Mobile */
