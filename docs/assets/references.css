@@ -28,33 +28,50 @@
 }
 
 /* Force white text + dark background in dark mode for refs-search */
-[data-theme="dark"] .refs-search,
-:root:not([data-theme="light"]) .refs-search {
+[data-theme="dark"] .refs-search {
     background: #1a2e1a !important;
     color: #ffffff !important;
     caret-color: #ffffff;
     border-color: #2d4a2d;
 }
 
-[data-theme="dark"] .refs-search::placeholder,
-:root:not([data-theme="light"]) .refs-search::placeholder {
+[data-theme="dark"] .refs-search::placeholder {
     color: #94a3b8 !important;
 }
 
-[data-theme="dark"] .refs-search:focus,
-:root:not([data-theme="light"]) .refs-search:focus {
+[data-theme="dark"] .refs-search:focus {
     border-color: #38a169;
 }
 
 [data-theme="dark"] .refs-search:-webkit-autofill,
 [data-theme="dark"] .refs-search:-webkit-autofill:hover,
-[data-theme="dark"] .refs-search:-webkit-autofill:focus,
-:root:not([data-theme="light"]) .refs-search:-webkit-autofill,
-:root:not([data-theme="light"]) .refs-search:-webkit-autofill:hover,
-:root:not([data-theme="light"]) .refs-search:-webkit-autofill:focus {
+[data-theme="dark"] .refs-search:-webkit-autofill:focus {
     -webkit-text-fill-color: #ffffff !important;
     -webkit-box-shadow: 0 0 0 1000px #1a2e1a inset !important;
     box-shadow: 0 0 0 1000px #1a2e1a inset !important;
+}
+
+/* Auto dark mode via OS preference */
+@media (prefers-color-scheme: dark) {
+    .refs-search {
+        background: #1a2e1a !important;
+        color: #ffffff !important;
+        caret-color: #ffffff;
+        border-color: #2d4a2d;
+    }
+    .refs-search::placeholder {
+        color: #94a3b8 !important;
+    }
+    .refs-search:focus {
+        border-color: #38a169;
+    }
+    .refs-search:-webkit-autofill,
+    .refs-search:-webkit-autofill:hover,
+    .refs-search:-webkit-autofill:focus {
+        -webkit-text-fill-color: #ffffff !important;
+        -webkit-box-shadow: 0 0 0 1000px #1a2e1a inset !important;
+        box-shadow: 0 0 0 1000px #1a2e1a inset !important;
+    }
 }
 
 .refs-filters {
