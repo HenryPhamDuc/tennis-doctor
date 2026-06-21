@@ -93,7 +93,7 @@ export default {
         description: 'AI tennis coach powered by Henry Pham research vault',
         models: {
           embedding: '@cf/baai/bge-m3 (multilingual, 1024-dim)',
-          llm: '@cf/meta/llama-3.1-8b-instruct',
+          llm: '@cf/meta/llama-3.1-8b-instruct-fp8',
         },
         knowledgeBase: {
           articles: '350+ from Henry Pham tennis research vault',
@@ -211,7 +211,7 @@ function streamChat(messages, sources, env) {
 
         // Then stream the LLM response token by token
         const aiResponse = await env.AI.run(
-          '@cf/meta/llama-3.1-8b-instruct',
+          '@cf/meta/llama-3.1-8b-instruct-fp8',
           {
             messages,
             stream: true,
@@ -253,7 +253,7 @@ function streamChat(messages, sources, env) {
 // ---------------------------------------------------------------------------
 async function batchChat(messages, sources, env) {
   try {
-    const response = await env.AI.run('@cf/meta/llama-3.1-8b-instruct', {
+    const response = await env.AI.run('@cf/meta/llama-3.1-8b-instruct-fp8', {
       messages,
       max_tokens: 800,
       temperature: 0.7,

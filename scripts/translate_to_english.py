@@ -184,8 +184,8 @@ def derive_english_title(vietnamese_title):
 
 def main():
     parser = argparse.ArgumentParser(description='Tennis-Doctor: translate VI wiki to EN')
-    parser.add_argument('--source', default='../tennis-wiki/docs',
-                        help='Source VI wiki directory')
+    parser.add_argument('--source', default=None,
+                        help='Source VI wiki directory (auto-detected if not given)')
     parser.add_argument('--out', default='docs-source',
                         help='Output directory for EN content')
     parser.add_argument('--mode', choices=['auto', 'llm', 'pass'], default='auto',
@@ -195,12 +195,36 @@ def main():
     parser.add_argument('--verbose', '-v', action='store_true')
     args = parser.parse_args()
 
-    src = Path(args.source)
-    out = Path(args.out)
-
+    src = Path(args.source) if args.source else None
+    if src is None or not src.exists():
+        # Auto-detect: walk up parent dirs + check known sibling locations
+        candidates = []
+        cwd = Path.cwd()
+        # 1. Sibling of cwd (../tennis-wiki/docs)
+        candidates.append(cwd.parent / 'tennis-wiki' / 'docs')
+        # 2. Sibling 2-up
+        candidates.append(cwd.parent.parent / 'tennis-wiki' / 'docs')
+        # 3. Original tennis-wiki location
+        candidates.append(Path(r'C:\Users\Henry\Documents\tennis-wiki\docs'))
+        # 4. The "MY VAULT" tennis-wiki output
+        candidates.append(Path(r'C:\Users\Henry\Documents\MY VAULT\Documents\Obsidian Vault\tennis-vault\Tennis Wiki-Vietnamese'))
+        for c in candidates:
+            if c.exists():
+                src = c
+                print(f'Auto-detected source: {src}', file=sys.stderr)
+                break
+        if src is None or not src.exists():
+            print(f'ERROR: source not found. Tried:', file=sys.stderr)
+            for c in candidates:
+                print(f'  - {c}', file=sys.stderr)
+            print(f'Pass --source PATH to specify explicitly', file=sys.stderr)
+            sys.exit(1)
     if not src.exists():
         print(f'ERROR: source not found: {src}', file=sys.stderr)
         sys.exit(1)
+
+    out = Path(args.out)
+    out.mkdir(parents=True, exist_ok=True)
 
     # Decide mode
     mode = args.mode

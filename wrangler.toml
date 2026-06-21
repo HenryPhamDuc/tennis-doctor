@@ -40,7 +40,7 @@ index_name = "tennis-doctor-embeddings"
 [vars]
 SITE_NAME = "Tennis Doctor"
 SITE_LANG = "en"
-DEFAULT_LLM = "@cf/meta/llama-3.1-8b-instruct"
+DEFAULT_LLM = "@cf/meta/llama-3.1-8b-instruct-fp8"
 EMBEDDING_MODEL = "@cf/baai/bge-m3"
 TOP_K = "8"
 # URL of the Vietnamese Tennis-WIKI site (for language toggle)

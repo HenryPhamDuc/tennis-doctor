@@ -40,4 +40,9 @@ docs-source/
 docs-source/_manifest.json
 
 # Wrangler state
-.wrangler/
+.wrangler/CFAccountID.txt
+CloudflareToken.txt
+run_deploy.py
+run_embeddings.py
+redeploy.py
+docs-source/
