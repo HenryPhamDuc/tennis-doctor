@@ -153,6 +153,10 @@ def main():
                         help='Manifest file to append to')
     parser.add_argument('--max-books', type=int, default=0,
                         help='Limit number of books (0=all)')
+    parser.add_argument('--max-chars', type=int, default=1000,
+                        help='Maximum characters per chunk (default 1000)')
+    parser.add_argument('--min-chars', type=int, default=200,
+                        help='Minimum characters per chunk (default 200)')
     parser.add_argument('--dry-run', action='store_true',
                         help='Show what would happen without writing files')
     parser.add_argument('--verbose', '-v', action='store_true')
@@ -221,7 +225,7 @@ def main():
             continue
 
         # Chunk
-        chunks = chunk_text(pages)
+        chunks = chunk_text(pages, max_chars=args.max_chars, min_chars=args.min_chars)
         print(f'  → {len(chunks)} chunks')
 
         # Write full text as a single .md file
