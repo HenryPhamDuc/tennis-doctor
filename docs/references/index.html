@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📚 References & Sources — Tennis Doctor</title>
+    <meta name="description" content="The complete bibliography of tennis instruction books, coaching manuals, and reference works in the Tennis Doctor knowledge base. Each book is cited in the chat bot's answers.">
+    <link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
+    <link rel="stylesheet" href="/assets/chat.css">
+    <meta property="og:title" content="Tennis Doctor — References & Sources">
+    <meta property="og:description" content="97 tennis books in the knowledge base — authors, year, topic, and full 2-3 paragraph intro for each.">
+    <meta property="og:type" content="article">
+    <link rel="stylesheet" href="/assets/references.css">
+</head>
+<body>
+    <!-- Navigation (same as index) -->
+    <nav class="td-nav">
+        <a href="/">🎾 Tennis Doctor</a>
+        <div class="td-nav-links">
+            <a href="/">Home</a>
+            <a href="/chat/">Chat</a>
+            <a href="/references/" aria-current="page">References</a>
+            <button id="lang-toggle" class="lang-toggle">🌐 EN</button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="td-hero td-hero-small">
+        <h1>📚 References & Sources</h1>
+        <p class="td-tagline">
+            The complete bibliography behind Tennis Doctor's answers.<br>
+            <strong id="book-count">97</strong> tennis books · <strong>20,080</strong> curated vault articles · <strong>22,492</strong> total indexed chunks
+        </p>
+    </header>
+
+    <main class="td-main">
+        <!-- Search & Filter -->
+        <section class="refs-controls">
+            <input
+                type="search"
+                id="refs-search"
+                class="refs-search"
+                placeholder="🔍 Search by title, author, or topic…"
+                autocomplete="off"
+            >
+            <div class="refs-filters" id="refs-filters">
+                <button class="refs-filter active" data-filter="all">All</button>
+                <button class="refs-filter" data-filter="Technique">Technique</button>
+                <button class="refs-filter" data-filter="Tactics">Tactics</button>
+                <button class="refs-filter" data-filter="Mental">Mental</button>
+                <button class="refs-filter" data-filter="Coaching">Coaching</button>
+                <button class="refs-filter" data-filter="Fitness">Fitness</button>
+                <button class="refs-filter" data-filter="Beginner">Beginner</button>
+                <button class="refs-filter" data-filter="Junior">Junior</button>
+                <button class="refs-filter" data-filter="History">History</button>
+                <button class="refs-filter" data-filter="Medicine">Medicine</button>
+                <button class="refs-filter" data-filter="Philosophy">Philosophy</button>
+            </div>
+            <div class="refs-meta">
+                Showing <span id="refs-visible-count">97</span> of <span id="refs-total-count">97</span> books
+            </div>
+        </section>
+
+        <!-- Books Table -->
+        <section class="refs-table-wrap">
+            <table class="refs-table" id="refs-table">
+                <thead>
+                    <tr>
+                        <th class="col-num">#</th>
+                        <th class="col-title" data-sort="title">Title</th>
+                        <th class="col-author" data-sort="author">Author</th>
+                        <th class="col-year" data-sort="year">Year</th>
+                        <th class="col-cat" data-sort="category">Topic</th>
+                        <th class="col-actions"></th>
+                    </tr>
+                </thead>
+                <tbody id="refs-tbody">
+                    <!-- Populated by JS from /assets/references-data.js -->
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Detail Modal -->
+        <div class="refs-modal" id="refs-modal" hidden>
+            <div class="refs-modal-backdrop" data-close></div>
+            <div class="refs-modal-content" role="dialog" aria-modal="true" aria-labelledby="refs-modal-title">
+                <button class="refs-modal-close" data-close aria-label="Close">×</button>
+                <div class="refs-modal-body" id="refs-modal-body">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="refs-footer">
+            <p>
+                <strong>About this bibliography:</strong>
+                Tennis Doctor draws its answers from two sources — Henry Pham's <a href="https://henryphamduc.github.io/tennis-wiki/" target="_blank" rel="noopener">Vietnamese tennis research vault</a>
+                (20,080 curated articles) and a curated sample from the tennis instruction books listed above (2,412 chunks across 97 books).
+                Each book contributes roughly 25 evenly-spaced samples to the vector database, balanced across categories so the chat bot can answer questions on any aspect of tennis.
+            </p>
+            <p>
+                Books are extracted with <code>pymupdf</code>, chunked at paragraph boundaries (~1,000 chars each), and embedded with Cloudflare's multilingual <code>bge-m3</code> model.
+                Retrieval uses cosine similarity over 1024-dimensional vectors stored in Cloudflare Vectorize. The system prompt instructs the LLM to cite sources by number.
+            </p>
+            <p style="text-align: center; margin-top: 32px;">
+                <a href="/chat/" class="td-btn td-btn-primary">Ask the chat a question →</a>
+                <a href="/" class="td-btn td-btn-secondary">← Back home</a>
+            </p>
+        </footer>
+    </main>
+
+    <!-- Data + JS -->
+    <script src="/assets/references-data.js"></script>
+    <script src="/assets/references.js"></script>
+</body>
+</html>

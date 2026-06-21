@@ -1,0 +1,327 @@
+/* Tennis Doctor - References page styles */
+
+.refs-controls {
+    max-width: 1100px;
+    margin: 32px auto;
+    padding: 0 20px;
+}
+
+.refs-search {
+    width: 100%;
+    padding: 14px 18px;
+    font-size: 16px;
+    border: 2px solid var(--td-border, #e2e8f0);
+    border-radius: 12px;
+    background: var(--td-input-bg, #ffffff);
+    color: var(--td-text, #1a202c);
+    outline: none;
+    transition: border-color 0.15s;
+}
+
+.refs-search:focus {
+    border-color: var(--td-primary, #38a169);
+}
+
+.refs-filters {
+    margin-top: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.refs-filter {
+    padding: 8px 14px;
+    border: 1.5px solid var(--td-border, #e2e8f0);
+    background: var(--td-bg, #ffffff);
+    color: var(--td-text-muted, #4a5568);
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.15s;
+}
+
+.refs-filter:hover {
+    border-color: var(--td-primary, #38a169);
+    color: var(--td-primary, #38a169);
+}
+
+.refs-filter.active {
+    background: var(--td-primary, #38a169);
+    border-color: var(--td-primary, #38a169);
+    color: white;
+}
+
+.refs-meta {
+    margin-top: 16px;
+    font-size: 14px;
+    color: var(--td-text-muted, #4a5568);
+}
+
+/* Table */
+.refs-table-wrap {
+    max-width: 1100px;
+    margin: 24px auto 60px;
+    padding: 0 20px;
+    overflow-x: auto;
+}
+
+.refs-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--td-card-bg, #ffffff);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    font-size: 15px;
+}
+
+.refs-table thead {
+    background: var(--td-table-head, #f7fafc);
+}
+
+.refs-table th {
+    padding: 14px 16px;
+    text-align: left;
+    font-weight: 600;
+    color: var(--td-text, #1a202c);
+    border-bottom: 2px solid var(--td-border, #e2e8f0);
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+}
+
+.refs-table th[data-sort]:hover {
+    color: var(--td-primary, #38a169);
+}
+
+.refs-table th.sort-asc::after { content: ' ▲'; color: var(--td-primary, #38a169); }
+.refs-table th.sort-desc::after { content: ' ▼'; color: var(--td-primary, #38a169); }
+
+.refs-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--td-border, #e2e8f0);
+    color: var(--td-text, #1a202c);
+    vertical-align: top;
+}
+
+.refs-table tbody tr:hover {
+    background: var(--td-row-hover, #f7fafc);
+}
+
+.refs-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.col-num { width: 40px; color: var(--td-text-muted, #718096); }
+.col-title { font-weight: 500; min-width: 240px; }
+.col-author { color: var(--td-text-muted, #4a5568); }
+.col-year { width: 80px; color: var(--td-text-muted, #4a5568); }
+.col-cat { width: 120px; }
+.col-actions { width: 100px; text-align: right; }
+
+/* Category badges */
+.refs-cat {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.refs-cat-Technique   { background: #c6f6d5; color: #22543d; }
+.refs-cat-Tactics     { background: #bee3f8; color: #2a4365; }
+.refs-cat-Mental      { background: #fefcbf; color: #744210; }
+.refs-cat-Coaching    { background: #e9d8fd; color: #44337a; }
+.refs-cat-Fitness     { background: #fed7d7; color: #742a2a; }
+.refs-cat-Beginner    { background: #fbd38d; color: #7b341e; }
+.refs-cat-Junior      { background: #b2f5ea; color: #234e52; }
+.refs-cat-History     { background: #d6d3d1; color: #1c1917; }
+.refs-cat-Medicine    { background: #fecaca; color: #7f1d1d; }
+.refs-cat-Philosophy  { background: #ddd6fe; color: #4c1d95; }
+.refs-cat-Industry    { background: #cbd5e0; color: #1a202c; }
+.refs-cat-Science     { background: #b3e5fc; color: #0c4a6e; }
+.refs-cat-Reference   { background: #e2e8f0; color: #1a202c; }
+.refs-cat-Memoir      { background: #fde68a; color: #78350f; }
+.refs-cat-Family      { background: #fbcfe8; color: #831843; }
+.refs-cat-Analytics   { background: #99f6e4; color: #134e4a; }
+
+/* Detail button */
+.refs-detail-btn {
+    padding: 6px 12px;
+    border: 1.5px solid var(--td-primary, #38a169);
+    background: transparent;
+    color: var(--td-primary, #38a169);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.15s;
+}
+.refs-detail-btn:hover {
+    background: var(--td-primary, #38a169);
+    color: white;
+}
+
+/* Modal */
+.refs-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.refs-modal[hidden] { display: none; }
+
+.refs-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.refs-modal-content {
+    position: relative;
+    background: var(--td-card-bg, #ffffff);
+    border-radius: 16px;
+    max-width: 720px;
+    width: calc(100% - 40px);
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    padding: 36px 40px;
+}
+
+.refs-modal-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: transparent;
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+    color: var(--td-text-muted, #718096);
+    border-radius: 8px;
+}
+.refs-modal-close:hover {
+    background: var(--td-border, #e2e8f0);
+}
+
+.refs-modal-body h2 {
+    margin: 0 0 12px;
+    font-size: 26px;
+    color: var(--td-text, #1a202c);
+    line-height: 1.3;
+}
+
+.refs-modal-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin: 16px 0 24px;
+    padding: 14px 18px;
+    background: var(--td-table-head, #f7fafc);
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.refs-meta-item {
+    color: var(--td-text-muted, #4a5568);
+}
+
+.refs-modal-intro p {
+    line-height: 1.7;
+    color: var(--td-text, #2d3748);
+    margin-bottom: 16px;
+    font-size: 16px;
+}
+
+.refs-modal-cta {
+    margin-top: 24px;
+    text-align: center;
+}
+
+/* Footer */
+.refs-footer {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+    color: var(--td-text-muted, #4a5568);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.refs-footer code {
+    background: var(--td-table-head, #f7fafc);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 13px;
+    color: var(--td-primary, #2f855a);
+}
+
+/* Hero tweak */
+.td-hero-small {
+    padding: 60px 20px 24px;
+    text-align: center;
+}
+
+.td-hero-small h1 {
+    margin: 0 0 12px;
+    font-size: 36px;
+}
+
+.td-hero-small .td-tagline {
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--td-text-muted, #4a5568);
+}
+
+.td-hero-small #book-count,
+.td-hero-small strong {
+    color: var(--td-primary, #2f855a);
+    font-weight: 700;
+}
+
+/* Dark mode (uses prefers-color-scheme) */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --td-bg: #1a202c;
+        --td-card-bg: #2d3748;
+        --td-text: #f7fafc;
+        --td-text-muted: #cbd5e0;
+        --td-border: #4a5568;
+        --td-input-bg: #2d3748;
+        --td-table-head: #1a202c;
+        --td-row-hover: #2a3343;
+    }
+    .refs-cat-Technique   { background: #22543d; color: #c6f6d5; }
+    .refs-cat-Tactics     { background: #2a4365; color: #bee3f8; }
+    .refs-cat-Mental      { background: #744210; color: #fefcbf; }
+    .refs-cat-Coaching    { background: #44337a; color: #e9d8fd; }
+    .refs-cat-Fitness     { background: #742a2a; color: #fed7d7; }
+    .refs-cat-Beginner    { background: #7b341e; color: #fbd38d; }
+    .refs-cat-Junior      { background: #234e52; color: #b2f5ea; }
+    .refs-cat-History     { background: #44403c; color: #e7e5e4; }
+    .refs-cat-Medicine    { background: #7f1d1d; color: #fecaca; }
+    .refs-cat-Philosophy  { background: #4c1d95; color: #ddd6fe; }
+    .refs-cat-Industry    { background: #4a5568; color: #e2e8f0; }
+    .refs-cat-Science     { background: #0c4a6e; color: #b3e5fc; }
+    .refs-cat-Reference   { background: #4a5568; color: #e2e8f0; }
+    .refs-cat-Memoir      { background: #78350f; color: #fde68a; }
+    .refs-cat-Family      { background: #831843; color: #fbcfe8; }
+    .refs-cat-Analytics   { background: #134e4a; color: #99f6e4; }
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+    .refs-table { font-size: 13px; }
+    .refs-table th, .refs-table td { padding: 10px 8px; }
+    .col-num, .col-year, .col-cat { display: none; }
+    .refs-modal-content { padding: 24px 20px; }
+    .refs-modal-body h2 { font-size: 22px; }
+}
