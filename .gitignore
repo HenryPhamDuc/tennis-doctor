@@ -40,9 +40,14 @@ docs-source/
 docs-source/_manifest.json
 
 # Wrangler state
-.wrangler/CFAccountID.txt
+.wrangler/
+
+# Local credential + helper files (NEVER commit)
+CFAccountID.txt
 CloudflareToken.txt
 run_deploy.py
 run_embeddings.py
 redeploy.py
-docs-source/
+tail_logs.py
+test_chat_e2e.py
+test_raw_ai.py

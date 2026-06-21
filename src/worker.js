@@ -28,9 +28,11 @@ and pro player analysis) plus translated English excerpts.
 - Clear, structured, friendly coach voice
 - Use bullet points, numbered lists, and tables when appropriate
 - Cite sources by [1], [2] etc. — the source numbers are provided in context
-- Match the user's language: if they ask in Vietnamese, respond in Vietnamese.
-  If they ask in English, respond in English (translating any Vietnamese
-  context you receive).
+- **ALWAYS respond in the SAME language the user asked their question in.**
+  This is a hard rule: English question → English response. Vietnamese question
+  → Vietnamese response. If the retrieved context is in a different language
+  than the user, translate the key points but write your response in the
+  user's language.
 - Be concise but thorough — give the "what" and the "why"
 - For technique questions, include: setup → execution → key cue → common errors
 - For injury/safety questions, add age-related disclaimers (esp. 40+ players)
@@ -201,6 +203,8 @@ async function handleChat(request, env) {
 // ---------------------------------------------------------------------------
 // Streaming chat (Server-Sent Events)
 // ---------------------------------------------------------------------------
+// IMPORTANT: The fp8 model returns its own Server-Sent Events when stream=true.
+// We forward the stream directly to the client instead of re-formatting tokens.
 function streamChat(messages, sources, env) {
   const encoder = new TextEncoder();
   const stream = new ReadableStream({
@@ -209,7 +213,7 @@ function streamChat(messages, sources, env) {
         // Send sources first as a "sources" event
         controller.enqueue(encoder.encode(`event: sources\ndata: ${JSON.stringify(sources)}\n\n`));
 
-        // Then stream the LLM response token by token
+        // Get the raw SSE stream from Workers AI
         const aiResponse = await env.AI.run(
           '@cf/meta/llama-3.1-8b-instruct-fp8',
           {
@@ -221,10 +225,42 @@ function streamChat(messages, sources, env) {
           }
         );
 
-        for await (const chunk of aiResponse) {
-          const token = chunk.response || '';
-          if (token) {
-            controller.enqueue(encoder.encode(`event: token\ndata: ${JSON.stringify(token)}\n\n`));
+        // Forward the raw SSE stream from the model.
+        // It already arrives as text/event-stream with data: lines.
+        // We re-emit each chunk as our own "token" event so the frontend
+        // can stay simple.
+        const reader = aiResponse.getReader();
+        const decoder = new TextDecoder();
+        let buffer = '';
+
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          buffer += decoder.decode(value, { stream: true });
+
+          // Process complete SSE events (separated by \n\n)
+          const parts = buffer.split('\n\n');
+          buffer = parts.pop() || '';
+
+          for (const part of parts) {
+            // Each part may have "event:" and "data:" lines
+            const dataMatch = part.match(/^data: (.*)$/m);
+            if (dataMatch) {
+              const data = dataMatch[1];
+              // Skip the [DONE] sentinel
+              if (data.trim() === '[DONE]') continue;
+              // Forward the data as-is (it's already a JSON string from Workers AI).
+              // Do NOT JSON.stringify again - that would double-encode.
+              controller.enqueue(encoder.encode(`event: token\ndata: ${data}\n\n`));
+            }
+          }
+        }
+
+        // Flush any trailing buffer
+        if (buffer.trim()) {
+          const dataMatch = buffer.match(/^data: (.*)$/m);
+          if (dataMatch && dataMatch[1].trim() !== '[DONE]') {
+            controller.enqueue(encoder.encode(`event: token\ndata: ${dataMatch[1]}\n\n`));
           }
         }
 

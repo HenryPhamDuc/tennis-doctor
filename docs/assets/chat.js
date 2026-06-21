@@ -234,7 +234,13 @@
                         } catch (e) { /* ignore parse errors */ }
                     } else if (event === 'token') {
                         try {
-                            const token = JSON.parse(data);
+                            const parsed = JSON.parse(data);
+                            // Workers AI may send { response: "text", p: "..." }
+                            // or just a string. Normalize to a string.
+                            const token = typeof parsed === 'string'
+                                ? parsed
+                                : (parsed.response || parsed.text || parsed.token || '');
+                            if (!token) continue;
                             accumulatedText += token;
                             appendTokenToBot(token);
                         } catch (e) { /* ignore */ }
