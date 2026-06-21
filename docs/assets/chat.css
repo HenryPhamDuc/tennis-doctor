@@ -20,10 +20,22 @@
 [data-theme="dark"] {
     --td-bg: #0d1f0d;
     --td-bg-card: #1a2e1a;
-    --td-text: #e8f5e9;
-    --td-text-muted: #aaa;
+    --td-text: #ffffff;
+    --td-text-muted: #cbd5e0;
     --td-border: #2d4a2d;
     --td-bot-bubble: #1a3a1a;
+}
+
+/* Auto dark mode if user prefers dark at OS level AND no explicit theme set */
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+        --td-bg: #0d1f0d;
+        --td-bg-card: #1a2e1a;
+        --td-text: #ffffff;
+        --td-text-muted: #cbd5e0;
+        --td-border: #2d4a2d;
+        --td-bot-bubble: #1a3a1a;
+    }
 }
 
 * { box-sizing: border-box; }
@@ -392,6 +404,59 @@ body {
     max-height: 150px;
     outline: none;
     transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Force light text color in dark theme for all form inputs
+   (prevents browser default of black text on dark background) */
+[data-theme="dark"] .chat-input,
+[data-theme="dark"] input[type="text"],
+[data-theme="dark"] input[type="search"],
+[data-theme="dark"] input[type="email"],
+[data-theme="dark"] textarea,
+[data-theme="dark"] select {
+    background: #1a2e1a;
+    color: #ffffff;
+    caret-color: #ffffff;
+}
+[data-theme="dark"] input::placeholder,
+[data-theme="dark"] textarea::placeholder,
+[data-theme="dark"] .chat-input::placeholder {
+    color: #94a3b8;
+    opacity: 1;
+}
+[data-theme="dark"] :-webkit-autofill,
+[data-theme="dark"] :-webkit-autofill:hover,
+[data-theme="dark"] :-webkit-autofill:focus {
+    -webkit-text-fill-color: #ffffff;
+    -webkit-box-shadow: 0 0 0 1000px #1a2e1a inset !important;
+    box-shadow: 0 0 0 1000px #1a2e1a inset !important;
+}
+
+/* Auto dark mode via OS preference (when no explicit theme attribute) */
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .chat-input,
+    :root:not([data-theme="light"]) input[type="text"],
+    :root:not([data-theme="light"]) input[type="search"],
+    :root:not([data-theme="light"]) input[type="email"],
+    :root:not([data-theme="light"]) textarea,
+    :root:not([data-theme="light"]) select {
+        background: #1a2e1a;
+        color: #ffffff;
+        caret-color: #ffffff;
+    }
+    :root:not([data-theme="light"]) input::placeholder,
+    :root:not([data-theme="light"]) textarea::placeholder,
+    :root:not([data-theme="light"]) .chat-input::placeholder {
+        color: #94a3b8;
+        opacity: 1;
+    }
+    :root:not([data-theme="light"]) :-webkit-autofill,
+    :root:not([data-theme="light"]) :-webkit-autofill:hover,
+    :root:not([data-theme="light"]) :-webkit-autofill:focus {
+        -webkit-text-fill-color: #ffffff;
+        -webkit-box-shadow: 0 0 0 1000px #1a2e1a inset !important;
+        box-shadow: 0 0 0 1000px #1a2e1a inset !important;
+    }
 }
 
 .chat-input:focus {
