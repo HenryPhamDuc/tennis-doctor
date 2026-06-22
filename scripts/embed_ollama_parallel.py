@@ -111,6 +111,9 @@ def main():
     parser.add_argument('--verbose', '-v', action='store_true')
     parser.add_argument('--log-file', default='embedding_run.log',
                         help='Log progress to this file')
+    parser.add_argument('--only-sections', default='books,tennisplayer',
+                        help='Comma-separated section names to embed (default: books,tennisplayer). '
+                             'Use "*" for all sections.')
     args = parser.parse_args()
 
     # Open log file for progress output
@@ -131,6 +134,12 @@ def main():
 
     manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
     chunks = manifest['chunks']
+    if args.only_sections != '*':
+        keep = set(s.strip() for s in args.only_sections.split(','))
+        before = len(chunks)
+        chunks = [c for c in chunks if c.get('section') in keep]
+        log(f'Section filter: kept {len(chunks)}/{before} chunks '
+            f'(sections: {sorted(keep)})')
     if args.start_from:
         chunks = chunks[args.start_from:]
     if args.limit:
