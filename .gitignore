@@ -53,3 +53,5 @@ test_chat_e2e.py
 test_raw_ai.py__pycache__/
 *.pyc
 embedding_run.log
+_manifest.json
+tennisplayer-stats.json
