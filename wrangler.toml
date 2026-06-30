@@ -44,7 +44,7 @@ DEFAULT_LLM = "@cf/meta/llama-3.1-8b-instruct-fp8"
 EMBEDDING_MODEL = "@cf/baai/bge-m3"
 TOP_K = "8"
 # URL of the Vietnamese Tennis-WIKI site (for language toggle)
-WIKI_URL = "https://henryphamduc.github.io/tennis-wiki/"
+WIKI_URL = "https://henryphamduc.github.io/tennis/tennis-wiki/"
 
 # =============================================================================
 # Custom domain (uncomment after adding a zone to your CF account)
