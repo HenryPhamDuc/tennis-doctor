@@ -170,7 +170,7 @@ tennis-doctor/
 The site is **English** by default. The language toggle (top-right of nav) sets a cookie and redirects to:
 
 - **English** → Tennis Doctor (this site)
-- **Vietnamese** → Tennis-WIKI at [henryphamduc.github.io/tennis-wiki](https://henryphamduc.github.io/tennis-wiki/)
+- **Vietnamese** → Tennis-WIKI at [henryphamduc.github.io/tennis-wiki](https://henryphamduc.github.io/tennis/tennis-wiki/)
 
 The chat bot is **bilingual-aware**:
 - Embeddings use bge-m3 (multilingual) — works equally for VI and EN queries
@@ -231,7 +231,7 @@ For the chatbot code itself (Worker, frontend, embedding pipeline):
 ## 📞 Links
 
 - **Live site**: https://tennis-doctor.example.com (replace with your actual URL after deploy)
-- **Vietnamese wiki**: https://henryphamduc.github.io/tennis-wiki/
+- **Vietnamese wiki**: https://henryphamduc.github.io/tennis/tennis-wiki/
 - **GitHub**: https://github.com/HenryPhamDuc/tennis-doctor
 - **Henry's blog**: https://tennis-for-everyone.blogspot.com/
 

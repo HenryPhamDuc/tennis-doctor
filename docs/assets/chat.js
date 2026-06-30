@@ -332,7 +332,7 @@
         const currentLang = document.documentElement.lang || 'en';
         const otherLang = currentLang === 'en' ? 'vi' : 'en';
         const otherUrl = currentLang === 'en'
-            ? 'https://henryphamduc.github.io/tennis-wiki/'
+            ? 'https://henryphamduc.github.io/tennis/tennis-wiki/'
             : window.location.origin;
         toggle.textContent = currentLang === 'en' ? '🇻🇳 Tiếng Việt' : '🇬🇧 English';
         toggle.title = `Switch to ${otherLang === 'vi' ? 'Vietnamese (Tennis-WIKI)' : 'English (Tennis-Doctor)'}`;
